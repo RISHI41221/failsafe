@@ -319,7 +319,7 @@ function Dashboard() {
                     dataKey="students"
                     fill="#38bdf8"
                     radius={[12, 12, 0, 0]}
-                    maxBarSize={54}
+                    maxBarSize={48}
                   />
                 </BarChart>
               </ResponsiveContainer>

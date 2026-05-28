@@ -37,6 +37,20 @@ BINARY_COLUMNS = [
 ]
 
 NOMINAL_COLUMNS = ["Mjob", "Fjob", "reason", "guardian"]
+SENSITIVE_FEATURES = [
+    "sex",
+    "age",
+    "address",
+    "famsize",
+    "Pstatus",
+    "Mjob",
+    "Fjob",
+    "reason",
+    "guardian",
+    "nursery",
+    "romantic",
+    "subject",
+]
 
 MODEL: Any | None = None
 EXPECTED_FEATURES: list[str] | None = None
@@ -244,13 +258,25 @@ def _extract_top_risk_factors(
     feature_names: list[str], shap_row: np.ndarray, limit: int = 3
 ) -> list[dict[str, float | str]]:
     """Select the most important features contributing to risk for one student."""
-    ranked_positive_indices = [
-        index for index in np.argsort(shap_row)[::-1] if shap_row[index] > 0
+    valid_indices = [
+        index
+        for index, feature_name in enumerate(feature_names)
+        if not feature_name.startswith(tuple(SENSITIVE_FEATURES))
     ]
+
+    ranked_positive_indices = sorted(
+        [index for index in valid_indices if shap_row[index] > 0],
+        key=lambda index: shap_row[index],
+        reverse=True,
+    )
 
     selected_indices = ranked_positive_indices[:limit]
     if len(selected_indices) < limit:
-        for index in np.argsort(np.abs(shap_row))[::-1]:
+        for index in sorted(
+            valid_indices,
+            key=lambda valid_index: abs(shap_row[valid_index]),
+            reverse=True,
+        ):
             if index not in selected_indices:
                 selected_indices.append(int(index))
             if len(selected_indices) == limit:
