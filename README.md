@@ -68,7 +68,7 @@ failsafe/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/failsafe.git
+git clone https://github.com/RISHI41221/failsafe.git
 cd failsafe
 ```
 
