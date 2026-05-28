@@ -74,7 +74,9 @@ cd failsafe
 
 ### 2. Download Raw Data
 
-Download the "Student Performance Data Set by UCI" from Kaggle. After downloading it, place these two files inside the `data/raw/` directory:
+Download the required dataset files directly from this [RAW_DATA](YOUR_DRIVE_LINK_HERE). 
+
+Once downloaded, ensure you place these exact two files inside the `data/raw/` directory:
 
 - `student-mat.csv`
 - `student-por.csv`
