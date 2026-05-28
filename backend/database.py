@@ -6,11 +6,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:password@localhost:5432/failsafe_db"
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./failsafe.db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://postgres:password@localhost:5432/failsafe_db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./failsafe.db"
 
-# `pool_pre_ping=True` helps recover cleanly from stale database connections.
-engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_pre_ping=True)
+# connect_args={"check_same_thread": False} is required for SQLite + FastAPI
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, 
+    connect_args={"check_same_thread": False},
+    pool_pre_ping=True
+)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
