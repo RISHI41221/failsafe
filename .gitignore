@@ -1,0 +1,49 @@
+# =========================
+# 1. Project Data & Models
+# =========================
+# Ignore all datasets and compiled ML models
+data/
+*.csv
+*.pkl
+*.h5
+*.model
+
+# =========================
+# 2. Python & FastAPI Backend
+# =========================
+# Environments
+venv/
+env/
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Local Database (if you temporarily use SQLite before PostgreSQL)
+*.db
+*.sqlite3
+
+# =========================
+# 3. React & Node Frontend
+# =========================
+node_modules/
+dist/
+build/
+.npm/
+
+# =========================
+# 4. OS Specific Files
+# =========================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
