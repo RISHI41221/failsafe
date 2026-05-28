@@ -33,20 +33,28 @@ Before setting up FAILSAFE, make sure the following tools are already installed 
 
 ```text
 failsafe/
-??? data/
-?   ??? raw/                # Raw dataset CSV files placed here before training
-?   ??? models/             # Trained model artifacts and expected feature schema
-??? scripts/                # ML training pipeline and model export script
-??? backend/
-?   ??? core/               # Security and authentication helpers
-?   ??? services/           # ML inference and SHAP explanation logic
-?   ??? database.py         # SQLAlchemy engine, session, and base configuration
-?   ??? models.py           # ORM models for users and predictions
-?   ??? main.py             # FastAPI entry point and API routes
-??? frontend/
-    ??? src/                # React pages, layout components, API layer, and auth context
-    ??? public/             # Static assets
-    ??? package.json        # Frontend dependencies and scripts
+├── backend/                 # FastAPI application and API services
+│   ├── core/                # Security (JWT) and configurations
+│   ├── services/            # ML inference service and SHAP explainers
+│   ├── database.py          # Database connection setup
+│   ├── main.py              # FastAPI application entry point
+│   └── models.py            # SQLAlchemy database models
+├── frontend/                # React application (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/      # Reusable UI components (AppShell, RiskProfilePanel)
+│   │   ├── lib/             # API clients (Axios) and Context providers
+│   │   ├── pages/           # Page views (Auth, Dashboard, Upload)
+│   │   ├── App.jsx          # Routing configuration
+│   │   └── main.jsx         # React DOM rendering
+│   ├── package.json         # Frontend dependencies
+│   └── tailwind.config.js   # Tailwind CSS configuration
+├── data/                    # Local data (Ignored by Git)
+│   ├── raw/                 # Raw CSV datasets (e.g., student-mat.csv)
+│   └── models/              # Exported XGBoost model artifacts (.pkl)
+├── scripts/                 # Independent Python scripts
+│   └── train_pipeline.py    # XGBoost model training and export pipeline
+├── .gitignore               # Git ignore rules (venv, node_modules, .db, data)
+└── README.md                # Project documentation
 ```
 
 - `data/raw/` stores the raw student CSV files used for model training and testing.
