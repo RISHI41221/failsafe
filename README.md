@@ -130,7 +130,12 @@ The backend will run on `localhost:8000`.
 
 ### 7. Deploy the Frontend
 
-Open a new terminal, then run:
+Open a new terminal. If your Python virtual environment `(venv)` is still active in this terminal, you must deactivate it first:
+
+```bash
+deactivate
+```
+then run:
 
 ```bash
 cd frontend
