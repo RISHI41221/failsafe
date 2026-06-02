@@ -2,7 +2,6 @@
 # 1. Project Data & Models
 # =========================
 # Ignore all datasets and compiled ML models
-data/
 *.csv
 *.pkl
 *.h5
